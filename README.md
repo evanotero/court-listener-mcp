@@ -54,7 +54,6 @@ export COURTLISTENER_API_TOKEN=your_token_here
 - `server/`: Python FastMCP server implementation.
 - `skills/`: Source code for the Legal Research skill (auto-discovered).
 - `gemini-extension.json`: Extension manifest defining the MCP server and settings.
-- `.spec/`: CourtListener API documentation and specifications.
 
 ## Support
 
