@@ -11,50 +11,49 @@ An extension for Gemini CLI to perform structured legal research using the [Cour
   - `get_docket`: Access case metadata, filing dates, and parties.
   - `list_courts`: Search for court abbreviations and IDs.
   - `verify_citations`: **Anti-hallucination guardrail** that validates legal citations against the CourtListener database.
-- **Legal Research Skill**: A specialized persona and workflow for senior legal researchers to discover, analyze, and verify legal precedents.
+- **Legal Research Skill**: A specialized persona and workflow for senior legal researchers to discover, analyze, and verify legal precedents. **Automatically discovered** after extension installation.
 
 ## Setup
 
 ### 1. Requirements
 
-- Python 3.10+
+- [uv](https://docs.astral.sh/uv/) (required for the MCP server)
 - [Gemini CLI](https://gemini.google.com/)
 - CourtListener API Token (Sign up at [CourtListener](https://www.courtlistener.com/api/))
 
-### 2. Configure MCP Server
+### 2. Installation
 
-1. Navigate to the `server/` directory.
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Create a `.env` file and add your API token:
-   ```bash
-   COURTLISTENER_API_TOKEN=your_token_here
-   ```
-
-### 3. Install the Skill
-
-Install the legal research skill to your workspace:
+Install the extension by linking it to your local Gemini CLI environment:
 ```bash
-gemini skills install legal-research.skill --scope workspace
+gemini extensions link .
+```
+This will:
+1.  **Register the MCP server**: `court-listener-mcp` will be available in all your sessions.
+2.  **Auto-install the Skill**: The `legal-research` skill will be discovered and made available.
+
+### 3. Configuration
+
+You will be prompted for your **CourtListener API Key** during installation or the first time you use the extension. You can also set it manually:
+```bash
+export COURTLISTENER_API_TOKEN=your_token_here
 ```
 
-### 4. Usage
+## Usage
 
-1. Reload your skills in an interactive Gemini session:
-   ```bash
-   /skills reload
-   ```
-2. Start researching:
-   - "Search for recent student loan forgiveness cases in SCOTUS."
-   - "Summarize the majority opinion in 576 U.S. 644 and verify the citations."
+1.  Start an interactive Gemini session.
+2.  Reload your skills if needed:
+    ```bash
+    /skills reload
+    ```
+3.  Start researching:
+    - "Search for recent student loan forgiveness cases in SCOTUS."
+    - "Summarize the majority opinion in 576 U.S. 644 and verify the citations."
 
 ## Project Structure
 
 - `server/`: Python FastMCP server implementation.
-- `skills/`: Source code for the Legal Research skill.
-- `legal-research.skill`: Packaged skill for installation.
+- `skills/`: Source code for the Legal Research skill (auto-discovered).
+- `gemini-extension.json`: Extension manifest defining the MCP server and settings.
 - `.spec/`: CourtListener API documentation and specifications.
 
 ## Support

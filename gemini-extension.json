@@ -1,0 +1,25 @@
+{
+  "name": "court-listener",
+  "version": "0.1.0",
+  "settings": [
+    {
+      "name": "Court Listener API Key",
+      "description": "The API key for Court Listener API.",
+      "envVar": "COURTLISTENER_API_TOKEN",
+      "sensitive": true
+    }
+  ],
+  "mcpServers": {
+    "court-listener-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--with-requirements",
+        "requirements.txt",
+        "python",
+        "server.py"
+      ],
+      "cwd": "${extensionPath}/server"
+    }
+  }
+}
