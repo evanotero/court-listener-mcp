@@ -14,9 +14,12 @@
       "command": "uv",
       "args": [
         "run",
+        "--with",
+        "fastmcp",
         "--with-requirements",
         "requirements.txt",
-        "python",
+        "fastmcp",
+        "run",
         "server.py"
       ],
       "cwd": "${extensionPath}/server"
